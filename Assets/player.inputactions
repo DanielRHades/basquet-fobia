@@ -1,12 +1,12 @@
 {
-    "name": "player",
+    "name": "Player",
     "maps": [
         {
-            "name": "MAPEADO",
+            "name": "Mapeado",
             "id": "680a63bd-0ab2-4b29-9a33-549ef08a06da",
             "actions": [
                 {
-                    "name": "Movimiento",
+                    "name": "Trotar",
                     "type": "Value",
                     "id": "5e3b3dff-8cd2-4bdd-b85f-0d188c79146a",
                     "expectedControlType": "Vector2",
@@ -15,22 +15,13 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Saltar",
-                    "type": "Button",
+                    "name": "Correr",
+                    "type": "Value",
                     "id": "6c44c6c1-e5e0-4b2e-96b3-cf08a134f326",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Aumentar",
-                    "type": "Button",
-                    "id": "a907ea3e-1451-4959-9b43-fe1786097868",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -41,84 +32,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movimiento",
+                    "action": "Trotar",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "Teclado",
-                    "id": "b11784d4-a6f7-4eba-a4f8-566aaf0f14c0",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movimiento",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Up",
-                    "id": "6df478de-86c7-40e6-ac49-0457e603619b",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movimiento",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Down",
-                    "id": "523521b1-2ed2-4ccd-88ab-0c0c9f457fb7",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movimiento",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Left",
-                    "id": "6142ec29-baf3-4468-b4b2-45964c9216e9",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movimiento",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Right",
-                    "id": "d50e6538-14ed-4f31-ac9a-7ddc8d023f40",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movimiento",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
                     "id": "64aa2ecc-d150-4e39-a359-1baf916e8393",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Saltar",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "624c32d0-c4f5-434a-aaf5-a2acf3787a74",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Aumentar",
+                    "action": "Correr",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 6653996713098330808}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.07343793, y: 3.32, z: -3.26}
+  m_LocalPosition: {x: -0.46, y: 3.32, z: -3.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -138,7 +138,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2708060129509089545}
-        m_TargetAssemblyTypeName: codecontrol, Assembly-CSharp
+        m_TargetAssemblyTypeName: ControlCode, Assembly-CSharp
         m_MethodName: EnMovimiento
         m_Mode: 0
         m_Arguments:
@@ -152,14 +152,10 @@ MonoBehaviour:
     m_ActionId: 5e3b3dff-8cd2-4bdd-b85f-0d188c79146a
     m_ActionName: MAPEADO/Movimiento[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6c44c6c1-e5e0-4b2e-96b3-cf08a134f326
-    m_ActionName: MAPEADO/Saltar
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2708060129509089545}
-        m_TargetAssemblyTypeName: codecontrol, Assembly-CSharp
-        m_MethodName: Aumentar
+        m_TargetAssemblyTypeName: ControlCode, Assembly-CSharp
+        m_MethodName: EnCorrer
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -169,8 +165,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: a907ea3e-1451-4959-9b43-fe1786097868
-    m_ActionName: MAPEADO/Aumentar
+    m_ActionId: 6c44c6c1-e5e0-4b2e-96b3-cf08a134f326
+    m_ActionName: MAPEADO/Saltar
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: MAPEADO
@@ -188,6 +184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1bfe0e1985e4d459f683f2480c5c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocidadTrotar: 6
+  velocidadCorrer: 10
 --- !u!54 &3864996102966034976
 Rigidbody:
   m_ObjectHideFlags: 0
