@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2708060129509089545}
   - component: {fileID: 3864996102966034976}
   m_Layer: 0
-  m_Name: Zombie
+  m_Name: Zombie1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 6653996713098330808}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.46, y: 3.32, z: -3.26}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -167,6 +167,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6c44c6c1-e5e0-4b2e-96b3-cf08a134f326
     m_ActionName: MAPEADO/Saltar
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 82ee1293-de3f-4921-808d-36a6072d26c7
+    m_ActionName: CharacterSelection/NextCharacter_P1[/XInputControllerWindows/rightStick/left,/XInputControllerWindows1/rightStick/left]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cc3df31a-6f07-4191-a6e3-de0644c5ef9c
+    m_ActionName: CharacterSelection/PreviousCharacter_P1[/XInputControllerWindows/rightStick/left,/XInputControllerWindows1/rightStick/left]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2a4dd77c-0d88-43b6-9127-460eeb0660e7
+    m_ActionName: CharacterSelection/NextCharacter_P2[/XInputControllerWindows/rightStick/right,/XInputControllerWindows1/rightStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6ded8705-d0a3-47c9-b2a2-6567b411ab06
+    m_ActionName: CharacterSelection/PreviousCharacter_P2[/XInputControllerWindows/rightStick/left,/XInputControllerWindows1/rightStick/left]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Mapeado

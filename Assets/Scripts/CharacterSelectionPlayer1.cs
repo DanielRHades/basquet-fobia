@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class CharacterSelection : MonoBehaviour
+public class CharacterSelectionPlayer1 : MonoBehaviour
 {
-    public GameObject[] characters;
-    public int selectedCharacter = 0;
-    public Transform spawnPoint; // Asume que tienes un Transform para definir la posición de visualización
+    public GameObject[] characters; // Array de prefabs del jugador 1
+    public Transform spawnPoint; // Posición de visualización
+    public Button nextButton; // Botón para seleccionar el siguiente personaje
+    public Button previousButton; // Botón para seleccionar el anterior personaje
+
+    private int selectedCharacter = 0; // Índice del personaje seleccionado
 
     private void Start()
     {
         UpdateCharacter();
+
+        // Configuración de eventos para los botones
+        nextButton.onClick.AddListener(NextCharacter);
+        previousButton.onClick.AddListener(PreviousCharacter);
     }
 
     public void NextCharacter()
@@ -37,13 +45,13 @@ public class CharacterSelection : MonoBehaviour
             character.SetActive(false);
         }
         characters[selectedCharacter].SetActive(true);
-        characters[selectedCharacter].transform.position = spawnPoint.position; // Coloca el personaje en el punto de spawn
-        characters[selectedCharacter].transform.rotation = spawnPoint.rotation; // Asegúrate de mantener la rotación
+        characters[selectedCharacter].transform.position = spawnPoint.position;
+        characters[selectedCharacter].transform.rotation = spawnPoint.rotation;
     }
 
     public void StartGame()
     {
-        PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
+        PlayerPrefs.SetInt("selectedCharacter1", selectedCharacter); // Guardar personaje del jugador 1
         SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 }
