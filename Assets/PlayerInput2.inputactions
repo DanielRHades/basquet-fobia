@@ -1,0 +1,54 @@
+{
+    "name": "PlayerInput2",
+    "maps": [
+        {
+            "name": "Mapeado_P2",
+            "id": "680a63bd-0ab2-4b29-9a33-549ef08a06da",
+            "actions": [
+                {
+                    "name": "Trotar",
+                    "type": "Value",
+                    "id": "5e3b3dff-8cd2-4bdd-b85f-0d188c79146a",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Correr",
+                    "type": "Value",
+                    "id": "6c44c6c1-e5e0-4b2e-96b3-cf08a134f326",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9ffb3252-b3ad-44be-a7c4-dd1c6f8f558f",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Trotar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "64aa2ecc-d150-4e39-a359-1baf916e8393",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Correr",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

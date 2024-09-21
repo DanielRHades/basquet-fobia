@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 6653996713098330808}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.19, y: 3.32, z: -1.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 132099381addb044bbc72a37566ab961, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 1c1d59b8dfcdec445b2eddd90dae84a0, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -167,25 +167,9 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6c44c6c1-e5e0-4b2e-96b3-cf08a134f326
     m_ActionName: MAPEADO/Saltar
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 82ee1293-de3f-4921-808d-36a6072d26c7
-    m_ActionName: CharacterSelection/NextCharacter_P1[/XInputControllerWindows/rightStick/left,/XInputControllerWindows1/rightStick/left]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cc3df31a-6f07-4191-a6e3-de0644c5ef9c
-    m_ActionName: CharacterSelection/PreviousCharacter_P1[/XInputControllerWindows/rightStick/left,/XInputControllerWindows1/rightStick/left]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2a4dd77c-0d88-43b6-9127-460eeb0660e7
-    m_ActionName: CharacterSelection/NextCharacter_P2[/XInputControllerWindows/rightStick/right,/XInputControllerWindows1/rightStick/right]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6ded8705-d0a3-47c9-b2a2-6567b411ab06
-    m_ActionName: CharacterSelection/PreviousCharacter_P2[/XInputControllerWindows/rightStick/left,/XInputControllerWindows1/rightStick/left]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Mapeado
+  m_DefaultActionMap: Mapeado_P1
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &2708060129509089545

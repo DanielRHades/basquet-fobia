@@ -1,23 +1,50 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class CharacterSelectionPlayer1 : MonoBehaviour
 {
     public GameObject[] characters; // Array de prefabs del jugador 1
     public Transform spawnPoint; // Posición de visualización
-    public Button nextButton; // Botón para seleccionar el siguiente personaje
-    public Button previousButton; // Botón para seleccionar el anterior personaje
-
     private int selectedCharacter = 0; // Índice del personaje seleccionado
 
     private void Start()
     {
-        UpdateCharacter();
+        // Desactivar PlayerInput en cada prefab
+        foreach (var character in characters)
+        {
+            var playerInput = character.GetComponent<PlayerInput>();
+            if (playerInput != null)
+            {
+                playerInput.enabled = false; // Desactivar PlayerInput
+            }
+        }
 
-        // Configuración de eventos para los botones
-        nextButton.onClick.AddListener(NextCharacter);
-        previousButton.onClick.AddListener(PreviousCharacter);
+        UpdateCharacter();
+    }
+
+    private void Update()
+    {
+        // Comprobar si hay al menos un gamepad
+        if (Gamepad.all.Count > 0)
+        {
+            // Leer las entradas de la cruceta
+            if (Gamepad.all[0].dpad.right.wasPressedThisFrame) // Derecha
+            {
+                NextCharacter();
+            }
+            else if (Gamepad.all[0].dpad.left.wasPressedThisFrame) // Izquierda
+            {
+                PreviousCharacter();
+            }
+
+            // Al presionar el botón "South", ir a la siguiente escena
+            if (Gamepad.all[0].startButton.wasPressedThisFrame)
+            {
+                GoSecondPlayerScene();
+            }
+        }
     }
 
     public void NextCharacter()
@@ -49,9 +76,9 @@ public class CharacterSelectionPlayer1 : MonoBehaviour
         characters[selectedCharacter].transform.rotation = spawnPoint.rotation;
     }
 
-    public void StartGame()
+    public void GoSecondPlayerScene()
     {
         PlayerPrefs.SetInt("selectedCharacter1", selectedCharacter); // Guardar personaje del jugador 1
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
 }

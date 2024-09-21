@@ -1,23 +1,50 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class CharacterSelectionPlayer2 : MonoBehaviour
 {
     public GameObject[] characters; // Array de prefabs del jugador 2
     public Transform spawnPoint; // Posición de visualización
-    public Button nextButton; // Botón para seleccionar el siguiente personaje
-    public Button previousButton; // Botón para seleccionar el anterior personaje
-
     private int selectedCharacter = 0; // Índice del personaje seleccionado
 
     private void Start()
     {
-        UpdateCharacter();
+        // Desactivar PlayerInput en cada prefab
+        foreach (var character in characters)
+        {
+            var playerInput = character.GetComponent<PlayerInput>();
+            if (playerInput != null)
+            {
+                playerInput.enabled = false; // Desactivar PlayerInput
+            }
+        }
 
-        // Configuración de eventos para los botones
-        nextButton.onClick.AddListener(NextCharacter);
-        previousButton.onClick.AddListener(PreviousCharacter);
+        UpdateCharacter();
+    }
+
+    private void Update()
+    {
+        // Comprobar si hay al menos dos gamepads
+        if (Gamepad.all.Count > 1)
+        {
+            // Leer las entradas de la cruceta
+            if (Gamepad.all[1].dpad.right.wasPressedThisFrame) // Derecha
+            {
+                NextCharacter();
+            }
+            else if (Gamepad.all[1].dpad.left.wasPressedThisFrame) // Izquierda
+            {
+                PreviousCharacter();
+            }
+
+            // Al presionar el botón "South", ir a la siguiente escena
+            if (Gamepad.all[1].startButton.wasPressedThisFrame)
+            {
+                StartGame();
+            }
+        }
     }
 
     public void NextCharacter()
