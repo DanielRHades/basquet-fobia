@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3364837144226401511}
   - component: {fileID: 2708060129509089545}
   - component: {fileID: 3864996102966034976}
+  - component: {fileID: -1776199034713407277}
   m_Layer: 0
   m_Name: Zombie1
   m_TagString: Untagged
@@ -167,14 +168,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6c44c6c1-e5e0-4b2e-96b3-cf08a134f326
     m_ActionName: MAPEADO/Saltar
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8ec63d76-ce0c-4142-b260-e896036e2894
-    m_ActionName: Mapeado_P2/Trotar[/DualShock4GamepadHID/rightStick,/DualSenseGamepadHID/rightStick]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f7c97552-a59b-4258-ae5a-f9daed8237e4
-    m_ActionName: Mapeado_P2/Correr[/DualShock4GamepadHID/rightTrigger,/DualSenseGamepadHID/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Mapeado_P1
@@ -221,3 +214,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 90
   m_CollisionDetection: 0
+--- !u!114 &-1776199034713407277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6653996713098330808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e43d1d15326f648926be7f28960605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puntoLanzamiento: {fileID: 0}
+  cesta: {x: 15, y: 4, z: -1}
+  balonPref: {fileID: 6653996713098330808, guid: 416c65446cbc97b4c9092cb7f1c728ef, type: 3}
+  alturaMaxima: 5

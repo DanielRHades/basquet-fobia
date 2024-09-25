@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3364837144226401511}
   - component: {fileID: 2708060129509089545}
   - component: {fileID: 3864996102966034976}
+  - component: {fileID: -3992919147489005763}
   m_Layer: 0
   m_Name: Zombie2
   m_TagString: Untagged
@@ -213,3 +214,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 90
   m_CollisionDetection: 0
+--- !u!114 &-3992919147489005763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6653996713098330808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 998f976dcbcfd514bbac3dadec8bac26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puntoLanzamiento: {fileID: 0}
+  cesta: {x: -10, y: 4, z: -1}
+  balonPref: {fileID: 6653996713098330808, guid: 416c65446cbc97b4c9092cb7f1c728ef, type: 3}
+  alturaMaxima: 5

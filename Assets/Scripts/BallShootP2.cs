@@ -1,19 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class BasketballThrow : MonoBehaviour
+public class BasketballThrowP2 : MonoBehaviour
 {
-    public Transform puntolanzamiento; // Punto de lanzamiento
-    public Transform cesta;            // Punto donde está la cesta
-    public GameObject balonpref;       // Prefab del balón
-    public float alturaMaxima = 5f;    // Altura máxima que debe alcanzar el balón
+    public Transform puntoLanzamiento; // Punto de lanzamiento
+    public Vector3 cesta;               // Posición de la cesta como Vector3
+    public GameObject balonPref;        // Prefab del balón
+    public float alturaMaxima = 5f;     // Altura máxima que debe alcanzar el balón
+
+    void Start()
+    {
+        // Inicializar puntoLanzamiento si es null
+        if (puntoLanzamiento == null)
+        {
+            puntoLanzamiento = this.transform; // Establecer a la posición del prefab
+        }
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) // Lanzar balón al presionar espacio
+        if (Gamepad.all.Count > 0 && Gamepad.all[1].buttonSouth.wasPressedThisFrame) // Lanzar balón al presionar el botón sur
         {
-            GameObject balon = Instantiate(balonpref, puntolanzamiento.position, Quaternion.identity);
+            GameObject balon = Instantiate(balonPref, puntoLanzamiento.position, Quaternion.identity);
             LaunchBall(balon);
         }
     }
@@ -23,11 +33,11 @@ public class BasketballThrow : MonoBehaviour
         Rigidbody rb = balon.GetComponent<Rigidbody>();
 
         // Calcular la distancia entre el punto de lanzamiento y la cesta
-        Vector3 toCesta = cesta.position - puntolanzamiento.position;
+        Vector3 toCesta = cesta - puntoLanzamiento.position; // Usar Vector3 cesta directamente
         Vector3 toCestaXZ = new Vector3(toCesta.x, 0, toCesta.z);  // Proyección en el plano XZ
 
         // Tiempo para alcanzar la canasta, usando la fórmula del tiro parabólico
-        float tiempo = Mathf.Sqrt(-2 * alturaMaxima / Physics.gravity.y) + 
+        float tiempo = Mathf.Sqrt(-2 * alturaMaxima / Physics.gravity.y) +
                        Mathf.Sqrt(2 * (toCesta.y - alturaMaxima) / Physics.gravity.y);
 
         // Calcular la velocidad inicial en los ejes XZ
