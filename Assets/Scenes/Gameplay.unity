@@ -322,7 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 488151690}
   m_Layer: 0
-  m_Name: CestaP1
+  m_Name: CestaLadoIzquierdo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -551,7 +551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1054321178}
   m_Layer: 0
-  m_Name: CestaP2
+  m_Name: CestaLadoDerecho
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
