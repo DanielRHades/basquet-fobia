@@ -30,24 +30,18 @@ public class ControlCode : MonoBehaviour
 
     void Update()
     {
-        // Si se está moviendo con el stick (dirección de movimiento distinta de cero con un umbral)
+        // Movimiento del personaje
         if (direccionMovimiento.magnitude > umbralMovimiento)
         {
-            // Determina la velocidad dependiendo de si el gatillo está presionado o no
             float velocidadActual = velocidadTrotar;
-
             if (correrValor > 0)
             {
                 velocidadActual = Mathf.Lerp(velocidadTrotar, velocidadCorrer, correrValor);
             }
 
-            // Calcula la dirección del movimiento en el espacio 3D con normalización para un movimiento suave
             Vector3 movimiento = new Vector3(direccionMovimiento.x, 0, direccionMovimiento.y).normalized;
-
-            // Mueve el objeto según la dirección y la velocidad actual
             transform.Translate(movimiento * velocidadActual * Time.deltaTime, Space.World);
 
-            // Rotar al personaje en la dirección del movimiento
             if (movimiento != Vector3.zero)
             {
                 Quaternion rotacion = Quaternion.LookRotation(movimiento);
@@ -59,12 +53,12 @@ public class ControlCode : MonoBehaviour
                 Debug.Log("Posición X: " + transform.position.x + ", Posición Z: " + transform.position.z);
                 ultimaPosicion = transform.position;
             }
-        }
-    }
+        } // <-- Este es el corchete de cierre que falta
+    } // <-- Y aquí cerramos el método Update
 
     private bool HasMoved()
     {
-        return Vector3.Distance(transform.position, ultimaPosicion) > 0.01f; // Ajusta el umbral según sea necesario
+        return Vector3.Distance(transform.position, ultimaPosicion) > 0.01f;
     }
 
     // Función para cuando se mueve el personaje con el stick
@@ -88,3 +82,4 @@ public class ControlCode : MonoBehaviour
         }
     }
 }
+
