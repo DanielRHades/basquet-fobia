@@ -7,6 +7,9 @@ TagManager:
   - BalonManoP1
   - BalonManoP2
   - BalonCancha
+  - pelota2
+  - Player1
+  - Player2
   layers:
   - Default
   - TransparentFX
