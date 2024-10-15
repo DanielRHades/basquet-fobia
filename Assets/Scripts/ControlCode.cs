@@ -50,7 +50,6 @@ public class ControlCode : MonoBehaviour
 
             if (HasMoved())
             {
-                Debug.Log("Posición X: " + transform.position.x + ", Posición Z: " + transform.position.z);
                 ultimaPosicion = transform.position;
             }
         } // <-- Este es el corchete de cierre que falta
@@ -73,12 +72,10 @@ public class ControlCode : MonoBehaviour
         if (ctx.performed)
         {
             correrValor = ctx.ReadValue<float>();
-            Debug.Log("Gatillo presionado, valor: " + correrValor);
         }
         else if (ctx.canceled)
         {
             correrValor = 0f;
-            Debug.Log("Gatillo soltado, valor: " + correrValor);
         }
     }
 }

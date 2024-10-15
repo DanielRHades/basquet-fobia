@@ -586,8 +586,8 @@ GameObject:
   - component: {fileID: 1110006425}
   - component: {fileID: 1110006424}
   m_Layer: 0
-  m_Name: Sphere
-  m_TagString: pelota
+  m_Name: BalonCancha
+  m_TagString: BalonCancha
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -660,7 +660,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aeface5826d22a74a955880ad676f7d2, type: 2}
+  - {fileID: 2100000, guid: 50975f09aaddf074eb5800461ad8c3e7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

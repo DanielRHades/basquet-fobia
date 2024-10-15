@@ -188,6 +188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidadTrotar: 6
   velocidadCorrer: 10
+  suavizadoRotacion: 5
+  umbralMovimiento: 0.1
 --- !u!114 &-8561455299899668496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +204,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puntoLanzamiento: {fileID: 7843480433185213255}
   cesta: {x: 12.8, y: 4, z: 0}
-  balonPref: {fileID: 6653996713098330808, guid: 416c65446cbc97b4c9092cb7f1c728ef, type: 3}
   alturaMaxima: 5
 --- !u!54 &3864996102966034976
 Rigidbody:
@@ -229,7 +230,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &7547861239523912432
 GameObject:

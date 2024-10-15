@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - pelota
-  - pelota2
+  - BalonManoP1
+  - BalonManoP2
+  - BalonCancha
   layers:
   - Default
   - TransparentFX
