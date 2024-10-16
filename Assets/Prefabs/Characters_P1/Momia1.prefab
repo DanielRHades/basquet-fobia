@@ -191,6 +191,7 @@ MonoBehaviour:
   velocidadCorrer: 10
   suavizadoRotacion: 5
   umbralMovimiento: 0.1
+  animator: {fileID: 2083740188480023340}
 --- !u!114 &-9206037030373193970
 MonoBehaviour:
   m_ObjectHideFlags: 0
