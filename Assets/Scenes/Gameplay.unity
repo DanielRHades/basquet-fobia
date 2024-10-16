@@ -1186,7 +1186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 1788975635}
   maxPoint: {fileID: 894704315}
-  minDistance: 20
+  minDistance: 10
   maxDistance: 0
   offset: 0
 --- !u!1 &1850021241
