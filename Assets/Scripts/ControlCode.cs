@@ -49,13 +49,14 @@ public class ControlCode : MonoBehaviour
         // Movimiento del personaje
         if (direccionMovimiento.magnitude > umbralMovimiento)
         {
-            if (HasParameter(animator, "Mover"))
+            if (HasParameter(animator, "mover"))
             {
-                animator.SetBool("Mover", true);
+                animator.SetBool("mover", true);
+                Debug.Log("El personaje está en movimiento.");
             }
             else
             {
-                Debug.LogWarning("El parámetro 'Moviendo' no existe en el Animator Controller.");
+                Debug.LogWarning("El parámetro 'mover' no existe en el Animator Controller.");
             }
 
             float velocidadActual = velocidadTrotar;
@@ -80,13 +81,14 @@ public class ControlCode : MonoBehaviour
         }
         else
         {
-            if (HasParameter(animator, "Mover"))
+            if (HasParameter(animator, "mover"))
             {
-                animator.SetBool("Mover", false);
+                animator.SetBool("mover", false);
+                Debug.Log("El personaje está en reposo.");
             }
             else
             {
-                Debug.LogWarning("El parámetro 'Moviendo' no existe en el Animator Controller.");
+                Debug.LogWarning("El parámetro 'mover' no existe en el Animator Controller.");
             }
         }
     }
@@ -111,6 +113,7 @@ public class ControlCode : MonoBehaviour
     public void EnMovimiento(InputAction.CallbackContext ctx)
     {
         direccionMovimiento = ctx.ReadValue<Vector2>();
+        Debug.Log("Dirección de movimiento: " + direccionMovimiento);
     }
 
     // Función para cuando se presiona el gatillo (Correr)
