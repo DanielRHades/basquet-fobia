@@ -5,11 +5,12 @@ using UnityEngine.InputSystem;
 
 public class BallManagerP1 : MonoBehaviour
 {
-    public Transform puntoLanzamiento;    // Punto de lanzamiento
-    public Vector3 cesta;                 // Posición de la cesta
-    public float alturaMaxima = 5f;       // Altura máxima
-    private GameObject balonCancha;       // Referencia al balón de la cancha
-    private bool tieneBalon = false;      // Si el jugador tiene un balón en la mano
+    public Transform puntoLanzamiento; // Punto de lanzamiento
+    public Vector3 cesta;               // Posición de la cesta
+    public float alturaMaxima = 5f;     // Altura máxima
+    private GameObject balonCancha;     // Referencia al balón de la cancha
+    private bool tieneBalon = false;    // Si el jugador tiene un balón en la mano
+    private ControlCode controlCode;    // Referencia al script del personaje
 
     void Start()
     {
@@ -30,6 +31,9 @@ public class BallManagerP1 : MonoBehaviour
         {
             Debug.LogWarning("No se encontró el BalonCancha con el tag especificado.");
         }
+
+        // Obtener la referencia al ControlCode en el mismo GameObject
+        controlCode = GetComponent<ControlCode>();
     }
 
     void Update()
@@ -61,15 +65,17 @@ public class BallManagerP1 : MonoBehaviour
 
                 // Activar balón en la mano del jugador
                 foreach (Transform child in transform)
+                {
+                    if (child.CompareTag("BalonManoP1"))
                     {
-                        if (child.CompareTag("BalonManoP1"))
-                        {
-                            child.gameObject.SetActive(true); // Activar el balón en la mano
-                        }
+                        child.gameObject.SetActive(true); // Activar el balón en la mano
                     }
+                }
+
+                // Actualizar el estado del balón en el personaje
+                controlCode.CambiarEstadoBalon(tieneBalon);
             }
         }
-
     }
 
     void LanzarBalon()
@@ -84,7 +90,6 @@ public class BallManagerP1 : MonoBehaviour
         // Calcular la trayectoria del lanzamiento
         Vector3 toCesta = cesta - lanzamientoPosicion; // Usar la nueva posición de lanzamiento
         Vector3 toCestaXZ = new Vector3(toCesta.x, 0, toCesta.z);
-        float distanciaHorizontal = toCestaXZ.magnitude;
         float tiempo = Mathf.Sqrt(-2 * alturaMaxima / Physics.gravity.y) +
                        Mathf.Sqrt(2 * (toCesta.y - alturaMaxima) / Physics.gravity.y);
         Vector3 velocidadXZ = toCestaXZ / tiempo;
@@ -93,6 +98,9 @@ public class BallManagerP1 : MonoBehaviour
         rb.velocity = velocidadInicial;
 
         tieneBalon = false; // Resetear el estado de tener balón
+
+        // Actualizar el estado del balón en el personaje
+        controlCode.CambiarEstadoBalon(tieneBalon);
     }
 
     void DesactivarBalonMano()

@@ -23,24 +23,24 @@ public class ControlCode : MonoBehaviour
     // Umbral para considerar movimiento
     public float umbralMovimiento = 0.1f;
 
-    public Animator animator;
+    public Animator personaje;
+    public Animator balon;// Asegúrate de asignar esto desde el inspector
 
     void Start()
     {
         ultimaPosicion = transform.position;
-        animator = GetComponentInChildren<Animator>();
 
-        if (animator != null)
+        if (personaje == null)
         {
-            // Listar todos los parámetros para verificar cuáles están disponibles
-            foreach (var param in animator.parameters)
-            {
-                Debug.Log("Parámetro encontrado: " + param.name + " - Tipo: " + param.type);
-            }
+            Debug.LogWarning("Animator no asignado en el inspector.");
         }
         else
         {
-            Debug.LogWarning("No se encontró el Animator en los hijos del objeto.");
+            // Listar todos los parámetros para verificar cuáles están disponibles
+            foreach (var param in personaje.parameters)
+            {
+                Debug.Log("Parámetro encontrado: " + param.name + " - Tipo: " + param.type);
+            }
         }
     }
 
@@ -49,16 +49,6 @@ public class ControlCode : MonoBehaviour
         // Movimiento del personaje
         if (direccionMovimiento.magnitude > umbralMovimiento)
         {
-            if (HasParameter(animator, "mover"))
-            {
-                animator.SetBool("mover", true);
-                Debug.Log("El personaje está en movimiento.");
-            }
-            else
-            {
-                Debug.LogWarning("El parámetro 'mover' no existe en el Animator Controller.");
-            }
-
             float velocidadActual = velocidadTrotar;
             if (correrValor > 0)
             {
@@ -74,39 +64,19 @@ public class ControlCode : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, rotacion, Time.deltaTime * suavizadoRotacion);
             }
 
-            if (HasMoved())
-            {
-                ultimaPosicion = transform.position;
-            }
+            AnimatotionPlay();
+            ultimaPosicion = transform.position;
         }
         else
         {
-            if (HasParameter(animator, "mover"))
-            {
-                animator.SetBool("mover", false);
-                Debug.Log("El personaje está en reposo.");
-            }
-            else
-            {
-                Debug.LogWarning("El parámetro 'mover' no existe en el Animator Controller.");
-            }
+            // Si no se mueve, actualizar el estado
+            AnimatotionPlay();
         }
     }
 
     private bool HasMoved()
     {
         return Vector3.Distance(transform.position, ultimaPosicion) > 0.01f;
-    }
-
-    // Función auxiliar para verificar si un parámetro existe en el Animator
-    private bool HasParameter(Animator animator, string paramName)
-    {
-        foreach (AnimatorControllerParameter param in animator.parameters)
-        {
-            if (param.name == paramName)
-                return true;
-        }
-        return false;
     }
 
     // Función para cuando se mueve el personaje con el stick
@@ -126,6 +96,37 @@ public class ControlCode : MonoBehaviour
         else if (ctx.canceled)
         {
             correrValor = 0f;
+        }
+    }
+
+    public void AnimatotionPlay()
+    {
+        if (personaje != null)
+        {
+            // Cambia el parámetro según el movimiento
+            personaje.SetBool("IsMoving", direccionMovimiento.magnitude > umbralMovimiento);
+            Debug.Log("El personaje está " + (direccionMovimiento.magnitude > umbralMovimiento ? "en movimiento" : "quieto"));
+        }
+
+        if (balon != null)
+        {
+            // Cambia el parámetro según el movimiento
+            balon.SetBool("IsMoving", direccionMovimiento.magnitude > umbralMovimiento);
+            Debug.Log("El personaje está " + (direccionMovimiento.magnitude > umbralMovimiento ? "en movimiento" : "quieto"));
+        }
+    }
+    public void CambiarEstadoBalon(bool tieneBalon)
+    {
+        if (personaje != null)
+        {
+            personaje.SetBool("TieneBalon", tieneBalon);
+            Debug.Log("Estado de balón actualizado: " + tieneBalon);
+        }
+
+        if (balon != null)
+        {
+            balon.SetBool("TieneBalon", tieneBalon);
+            Debug.Log("Estado de balón actualizado: " + tieneBalon);
         }
     }
 }
