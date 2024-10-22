@@ -83,7 +83,6 @@ public class ControlCode : MonoBehaviour
     public void EnMovimiento(InputAction.CallbackContext ctx)
     {
         direccionMovimiento = ctx.ReadValue<Vector2>();
-        Debug.Log("Dirección de movimiento: " + direccionMovimiento);
     }
 
     // Función para cuando se presiona el gatillo (Correr)
@@ -105,14 +104,14 @@ public class ControlCode : MonoBehaviour
         {
             // Cambia el parámetro según el movimiento
             personaje.SetBool("IsMoving", direccionMovimiento.magnitude > umbralMovimiento);
-            Debug.Log("El personaje está " + (direccionMovimiento.magnitude > umbralMovimiento ? "en movimiento" : "quieto"));
+            
         }
 
         if (balon != null)
         {
             // Cambia el parámetro según el movimiento
             balon.SetBool("IsMoving", direccionMovimiento.magnitude > umbralMovimiento);
-            Debug.Log("El personaje está " + (direccionMovimiento.magnitude > umbralMovimiento ? "en movimiento" : "quieto"));
+            
         }
     }
     public void CambiarEstadoBalon(bool tieneBalon)
@@ -127,6 +126,14 @@ public class ControlCode : MonoBehaviour
         {
             balon.SetBool("TieneBalon", tieneBalon);
             Debug.Log("Estado de balón actualizado: " + tieneBalon);
+        }
+    }
+
+    public void LanzarBalon()
+    {
+        if (personaje != null)
+        {
+            personaje.SetTrigger("Lanzar"); // Asegúrate de que este trigger esté definido en tu Animator
         }
     }
 }
