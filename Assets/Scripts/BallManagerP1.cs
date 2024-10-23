@@ -142,7 +142,7 @@ public class BallManagerP1 : MonoBehaviour
             // Robar el balón
             managerOponente.DesactivarBalonManoP2(); // Desactivar el balón en el oponente
             managerOponente.tieneBalonP2 = false; // El oponente ya no tiene el balón
-            controlCode.CambiarEstadoBalon(managerOponente.tieneBalonP2); // Actualizar estado del oponente
+            
 
             tieneBalon = true; // Indicar que el jugador ahora tiene el balón
 
