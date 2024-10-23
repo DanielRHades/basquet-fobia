@@ -3,39 +3,39 @@ using UnityEngine.InputSystem;
 
 public class ControlCodeP2 : MonoBehaviour
 {
-    private Vector3 ultimaPosicion;
+    private Vector3 ultimaPosicionP2;
 
     // Variables para las velocidades de trotar y correr
-    public float velocidadTrotar = 100f;
-    public float velocidadCorrer = 300f;
+    public float velocidadTrotarP2 = 100f;
+    public float velocidadCorrerP2 = 300f;
 
     // Variable para capturar el valor del gatillo (correr)
-    float correrValor = 0f;
+    float correrValorP2 = 0f;
 
     // Variable para capturar el valor de movimiento del stick
-    Vector2 direccionMovimiento;
+    Vector2 direccionMovimientoP2;
 
     // Velocidad de suavización de rotación
-    public float suavizadoRotacion = 5f;
+    public float suavizadoRotacionP2 = 5f;
 
     // Umbral para considerar movimiento
-    public float umbralMovimiento = 0.1f;
+    public float umbralMovimientoP2 = 0.1f;
 
-    public Animator P2Animator;
-    public Animator B2Animator;  // Asegúrate de asignar esto desde el inspector
+    public Animator animatorP2;
+    public Animator bAnimatorP2;  // Asegúrate de asignar esto desde el inspector
 
     void Start()
     {
-        ultimaPosicion = transform.position;
+        ultimaPosicionP2 = transform.position;
 
-        if (P2Animator == null)
+        if (animatorP2 == null)
         {
             Debug.LogWarning("Animator no asignado en el inspector.");
         }
         else
         {
             // Listar todos los parámetros para verificar cuáles están disponibles
-            foreach (var param in P2Animator.parameters)
+            foreach (var param in animatorP2.parameters)
             {
                 Debug.Log("Parámetro encontrado: " + param.name + " - Tipo: " + param.type);
             }
@@ -45,25 +45,25 @@ public class ControlCodeP2 : MonoBehaviour
     void Update()
     {
         // Movimiento del personaje
-        if (direccionMovimiento.magnitude > umbralMovimiento)
+        if (direccionMovimientoP2.magnitude > umbralMovimientoP2)
         {
-            float velocidadActual = velocidadTrotar;
-            if (correrValor > 0)
+            float velocidadActual = velocidadTrotarP2;
+            if (correrValorP2 > 0)
             {
-                velocidadActual = Mathf.Lerp(velocidadTrotar, velocidadCorrer, correrValor);
+                velocidadActual = Mathf.Lerp(velocidadTrotarP2, velocidadCorrerP2, correrValorP2);
             }
 
-            Vector3 movimiento = new Vector3(direccionMovimiento.x, 0, direccionMovimiento.y).normalized;
+            Vector3 movimiento = new Vector3(direccionMovimientoP2.x, 0, direccionMovimientoP2.y).normalized;
             transform.Translate(movimiento * velocidadActual * Time.deltaTime, Space.World);
 
             if (movimiento != Vector3.zero)
             {
                 Quaternion rotacion = Quaternion.LookRotation(movimiento);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotacion, Time.deltaTime * suavizadoRotacion);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotacion, Time.deltaTime * suavizadoRotacionP2);
             }
 
             AnimatotionPlay();
-            ultimaPosicion = transform.position;
+            ultimaPosicionP2 = transform.position;
         }
         else
         {
@@ -72,11 +72,10 @@ public class ControlCodeP2 : MonoBehaviour
         }
     }
 
-
     // Función para cuando se mueve el personaje con el stick
     public void EnMovimiento(InputAction.CallbackContext ctx)
     {
-        direccionMovimiento = ctx.ReadValue<Vector2>();
+        direccionMovimientoP2 = ctx.ReadValue<Vector2>();
     }
 
     // Función para cuando se presiona el gatillo (Correr)
@@ -84,50 +83,49 @@ public class ControlCodeP2 : MonoBehaviour
     {
         if (ctx.performed)
         {
-            correrValor = ctx.ReadValue<float>();
+            correrValorP2 = ctx.ReadValue<float>();
         }
         else if (ctx.canceled)
         {
-            correrValor = 0f;
+            correrValorP2 = 0f;
         }
     }
 
     public void AnimatotionPlay()
     {
-        if (P2Animator != null)
+        if (animatorP2 != null)
         {
             // Cambia el parámetro según el movimiento
-            P2Animator.SetBool("IsMovingP2", direccionMovimiento.magnitude > umbralMovimiento);
-            
+            animatorP2.SetBool("IsMovingP2", direccionMovimientoP2.magnitude > umbralMovimientoP2);
         }
 
-        if (B2Animator != null)
+        if (bAnimatorP2 != null)
         {
             // Cambia el parámetro según el movimiento
-            B2Animator.SetBool("IsMovingP2", direccionMovimiento.magnitude > umbralMovimiento);
-            
+            bAnimatorP2.SetBool("IsMovingP2", direccionMovimientoP2.magnitude > umbralMovimientoP2);
         }
     }
+
     public void CambiarEstadoBalon(bool tieneBalon)
     {
-        if (P2Animator != null)
+        if (animatorP2 != null)
         {
-            P2Animator.SetBool("TieneBalonP2", tieneBalon);
+            animatorP2.SetBool("TieneBalonP2", tieneBalon);
             Debug.Log("Estado de balón actualizado: " + tieneBalon);
         }
 
-        if (B2Animator != null)
+        if (bAnimatorP2 != null)
         {
-            B2Animator.SetBool("TieneBalonP2", tieneBalon);
+            bAnimatorP2.SetBool("TieneBalonP2", tieneBalon);
             Debug.Log("Estado de balón actualizado: " + tieneBalon);
         }
     }
 
     public void LanzarBalon()
     {
-        if (P2Animator != null)
+        if (animatorP2 != null)
         {
-            P2Animator.SetTrigger("Lanzar"); // Asegúrate de que este trigger esté definido en tu Animator
+            animatorP2.SetTrigger("Lanzar"); // Asegúrate de que este trigger esté definido en tu Animator
         }
     }
 }
