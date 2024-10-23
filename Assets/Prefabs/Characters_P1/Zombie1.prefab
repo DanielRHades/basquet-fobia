@@ -191,8 +191,8 @@ MonoBehaviour:
   velocidadCorrer: 10
   suavizadoRotacion: 5
   umbralMovimiento: 0.1
-  personaje: {fileID: 8574125351548219387}
-  balon: {fileID: 8691404933902011256}
+  P1Animator: {fileID: 8574125351548219387}
+  B1Animator: {fileID: 8691404933902011256}
 --- !u!54 &3864996102966034976
 Rigidbody:
   m_ObjectHideFlags: 0

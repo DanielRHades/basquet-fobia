@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +7,8 @@ public class BallManagerP2 : MonoBehaviour
     public Vector3 cestaP2;               // Posición de la cesta para el segundo jugador
     public float alturaMaximaP2 = 5f;     // Altura máxima que debe alcanzar el balón
     private GameObject balonCancha;       // Referencia al balón de la cancha
-    public bool tieneBalonP2 = false;    // Verifica si el segundo jugador ha recogido la pelota del centro
+    public bool tieneBalonP2 = false;
+    private ControlCodeP2 controlCode;
 
     void Start()
     {
@@ -32,6 +30,9 @@ public class BallManagerP2 : MonoBehaviour
         {
             Debug.LogWarning("No se encontró el BalonCancha con el tag especificado.");
         }
+
+        // Obtener la referencia al ControlCode en el mismo GameObject
+        controlCode = GetComponent<ControlCodeP2>();
     }
 
     void Update()
@@ -134,8 +135,6 @@ public class BallManagerP2 : MonoBehaviour
             // Robar el balón
             managerOponente.DesactivarBalonMano(); // Desactivar el balón en el jugador 1
             managerOponente.tieneBalon = false; // El jugador 1 ya no tiene el balón
-
-
 
             tieneBalonP2 = true; // Indicar que el jugador ahora tiene el balón
 

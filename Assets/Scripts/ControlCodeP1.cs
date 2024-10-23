@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ControlCode : MonoBehaviour
+public class ControlCodeP1 : MonoBehaviour
 {
     private Vector3 ultimaPosicion;
 
@@ -23,21 +21,21 @@ public class ControlCode : MonoBehaviour
     // Umbral para considerar movimiento
     public float umbralMovimiento = 0.1f;
 
-    public Animator personaje;
-    public Animator balon;// Asegúrate de asignar esto desde el inspector
+    public Animator P1Animator;
+    public Animator B1Animator;  // Asegúrate de asignar esto desde el inspector
 
     void Start()
     {
         ultimaPosicion = transform.position;
 
-        if (personaje == null)
+        if (P1Animator == null)
         {
             Debug.LogWarning("Animator no asignado en el inspector.");
         }
         else
         {
             // Listar todos los parámetros para verificar cuáles están disponibles
-            foreach (var param in personaje.parameters)
+            foreach (var param in P1Animator.parameters)
             {
                 Debug.Log("Parámetro encontrado: " + param.name + " - Tipo: " + param.type);
             }
@@ -74,10 +72,6 @@ public class ControlCode : MonoBehaviour
         }
     }
 
-    private bool HasMoved()
-    {
-        return Vector3.Distance(transform.position, ultimaPosicion) > 0.01f;
-    }
 
     // Función para cuando se mueve el personaje con el stick
     public void EnMovimiento(InputAction.CallbackContext ctx)
@@ -100,40 +94,40 @@ public class ControlCode : MonoBehaviour
 
     public void AnimatotionPlay()
     {
-        if (personaje != null)
+        if (P1Animator != null)
         {
             // Cambia el parámetro según el movimiento
-            personaje.SetBool("IsMoving", direccionMovimiento.magnitude > umbralMovimiento);
+            P1Animator.SetBool("IsMovingP1", direccionMovimiento.magnitude > umbralMovimiento);
             
         }
 
-        if (balon != null)
+        if (B1Animator != null)
         {
             // Cambia el parámetro según el movimiento
-            balon.SetBool("IsMoving", direccionMovimiento.magnitude > umbralMovimiento);
+            B1Animator.SetBool("IsMovingP1", direccionMovimiento.magnitude > umbralMovimiento);
             
         }
     }
     public void CambiarEstadoBalon(bool tieneBalon)
     {
-        if (personaje != null)
+        if (P1Animator != null)
         {
-            personaje.SetBool("TieneBalon", tieneBalon);
+            P1Animator.SetBool("TieneBalonP1", tieneBalon);
             Debug.Log("Estado de balón actualizado: " + tieneBalon);
         }
 
-        if (balon != null)
+        if (B1Animator != null)
         {
-            balon.SetBool("TieneBalon", tieneBalon);
+            B1Animator.SetBool("TieneBalonP1", tieneBalon);
             Debug.Log("Estado de balón actualizado: " + tieneBalon);
         }
     }
 
     public void LanzarBalon()
     {
-        if (personaje != null)
+        if (P1Animator != null)
         {
-            personaje.SetTrigger("Lanzar"); // Asegúrate de que este trigger esté definido en tu Animator
+            P1Animator.SetTrigger("Lanzar"); // Asegúrate de que este trigger esté definido en tu Animator
         }
     }
 }

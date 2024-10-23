@@ -10,7 +10,8 @@ public class BallManagerP1 : MonoBehaviour
     public float alturaMaxima = 5f;     // Altura máxima
     private GameObject balonCancha;     // Referencia al balón de la cancha
     public bool tieneBalon = false;    // Si el jugador tiene un balón en la mano
-    private ControlCode controlCode;    // Referencia al script del personaje
+    private ControlCodeP1 controlCode;
+   
 
     void Start()
     {
@@ -33,7 +34,7 @@ public class BallManagerP1 : MonoBehaviour
         }
 
         // Obtener la referencia al ControlCode en el mismo GameObject
-        controlCode = GetComponent<ControlCode>();
+        controlCode = GetComponent<ControlCodeP1>();
     }
 
     void Update()
@@ -142,7 +143,6 @@ public class BallManagerP1 : MonoBehaviour
             // Robar el balón
             managerOponente.DesactivarBalonManoP2(); // Desactivar el balón en el oponente
             managerOponente.tieneBalonP2 = false; // El oponente ya no tiene el balón
-            
 
             tieneBalon = true; // Indicar que el jugador ahora tiene el balón
 
