@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +10,7 @@ public class BallManagerP2 : MonoBehaviour
     public Vector3 cestaP2;               // Posición de la cesta para el segundo jugador
     public float alturaMaximaP2 = 5f;     // Altura máxima que debe alcanzar el balón
     private GameObject balonCancha;       // Referencia al balón de la cancha
-    private bool tieneBalonP2 = false;    // Verifica si el segundo jugador ha recogido la pelota del centro
+    public bool tieneBalonP2 = false;    // Verifica si el segundo jugador ha recogido la pelota del centro
 
     void Start()
     {
@@ -47,6 +48,23 @@ public class BallManagerP2 : MonoBehaviour
         {
             LanzarBalonP2();
             DesactivarBalonManoP2();
+        }
+
+        // Robo de balón con el botón "Y" o "buttonNorth" para el Jugador 2
+        if (Gamepad.all.Count > 0 && Gamepad.all[1].buttonNorth.wasPressedThisFrame && !tieneBalonP2)
+        {
+            // Detectar colisiones cercanas
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 1.5f);
+            foreach (Collider col in colliders)
+            {
+                // Si el objeto tiene el componente BallManagerP1 (para el Jugador 1)
+                BallManagerP1 jugador2 = col.GetComponent<BallManagerP1>();
+                if (jugador2 != null && !tieneBalonP2)
+                {
+                    RobarBalonP2(jugador2.gameObject);
+                }
+            }
+
         }
     }
 
@@ -95,7 +113,7 @@ public class BallManagerP2 : MonoBehaviour
         tieneBalonP2 = false; // Resetear el estado de tener balón
     }
 
-    void DesactivarBalonManoP2()
+    public void DesactivarBalonManoP2()
     {
         // Desactivar el balón en la mano del jugador
         foreach (Transform child in transform)
@@ -106,4 +124,32 @@ public class BallManagerP2 : MonoBehaviour
             }
         }
     }
+
+    public void RobarBalonP2(GameObject oponente)
+    {
+        // Verificar si el oponente (Jugador 1) tiene el balón
+        BallManagerP1 managerOponente = oponente.GetComponent<BallManagerP1>();
+        if (managerOponente != null && managerOponente.tieneBalon)
+        {
+            // Robar el balón
+            managerOponente.DesactivarBalonMano(); // Desactivar el balón en el jugador 1
+            managerOponente.tieneBalon = false; // El jugador 1 ya no tiene el balón
+
+
+
+            tieneBalonP2 = true; // Indicar que el jugador ahora tiene el balón
+
+            // Activar balón en la mano del jugador
+            foreach (Transform child in transform)
+            {
+                if (child.CompareTag("BalonManoP2"))
+                {
+                    child.gameObject.SetActive(true); // Activar el balón en la mano
+                }
+            }
+
+            Debug.Log("Jugador 2 ha robado el balón del Jugador 1.");
+        }
+    }
+
 }
