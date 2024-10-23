@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -134,8 +135,18 @@ public class BallManagerP2 : MonoBehaviour
             managerOponente.DesactivarBalonMano(); // Desactivar el balón en el jugador 1
             managerOponente.tieneBalon = false; // El jugador 1 ya no tiene el balón
 
-            // Asignar el balón al jugador 2
-            RecogerBalonP2(); // Llamar la función para que el jugador 2 recoja el balón
+
+
+            tieneBalonP2 = true; // Indicar que el jugador ahora tiene el balón
+
+            // Activar balón en la mano del jugador
+            foreach (Transform child in transform)
+            {
+                if (child.CompareTag("BalonManoP2"))
+                {
+                    child.gameObject.SetActive(true); // Activar el balón en la mano
+                }
+            }
 
             Debug.Log("Jugador 2 ha robado el balón del Jugador 1.");
         }

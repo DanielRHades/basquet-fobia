@@ -144,8 +144,16 @@ public class BallManagerP1 : MonoBehaviour
             managerOponente.tieneBalonP2 = false; // El oponente ya no tiene el balón
             controlCode.CambiarEstadoBalon(managerOponente.tieneBalonP2); // Actualizar estado del oponente
 
-            // Asignar el balón al jugador actual
-            RecogerBalon(); // Utilizar la función existente para recoger el balón
+            tieneBalon = true; // Indicar que el jugador ahora tiene el balón
+
+            // Activar balón en la mano del jugador
+            foreach (Transform child in transform)
+            {
+                if (child.CompareTag("BalonManoP1"))
+                {
+                    child.gameObject.SetActive(true); // Activar el balón en la mano
+                }
+            }
 
             Debug.Log("El balón ha sido robado del oponente.");
         }
